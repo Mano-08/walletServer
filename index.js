@@ -7,7 +7,12 @@ const User = require("./models/users");
 const cors = require("cors");
 const port = process.env.PORT;
 
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.CLIENT_URL,
+  })
+);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
