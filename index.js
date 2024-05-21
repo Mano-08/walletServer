@@ -38,8 +38,21 @@ app.post("/api/create-user", async (req, res) => {
 app.post("/api/get-user", async (req, res) => {
   try {
     const { walletAddress } = req.body;
-    console.log(walletAddress);
     const user = await User.findOne({ walletAddress });
+    res.status(200).send(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+app.post("/api/upload-profile-pic", async (req, res) => {
+  try {
+    const { walletAddress, profilePicURL } = req.body;
+    const user = await User.findOneAndUpdate(
+      { walletAddress },
+      { profilePicURL }
+    );
     res.status(200).send(user);
   } catch (error) {
     console.log(error);

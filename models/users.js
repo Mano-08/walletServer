@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema({
   expertise: { type: [String], required: true },
   expLevel: { type: String, required: true },
   collabTypes: { type: [String], required: true },
-  walletAddress: { type: String, index: true, unique: true },
+  walletAddress: { type: String, index: true, unique: true, required: true },
+  profilePicURL: { type: String, default: "" },
 });
 
 const User = mongoose.model("User", userSchema);
